@@ -1,0 +1,19 @@
+mutation Login($email: String!, $password: String!) {
+  dslLogin(authRequest: { username: $email, password: $password }) {
+    result
+    user {
+      id
+      title
+      firstName
+      lastName
+      phone
+      email
+      type
+      brand {
+        id
+        displayName
+        adminLogo
+      }
+    }
+  }
+}

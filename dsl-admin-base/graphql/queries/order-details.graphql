@@ -1,0 +1,48 @@
+query GetOrderDetails($id: Int!) {
+  getAdminOrderById(id: $id) {
+    id
+    reference
+    userId
+    subtotal
+    discount
+    total
+    totalTax
+    notes
+    firstname
+    lastname
+    createdOn
+    shippingLine1
+    shippingLine2
+    shippingLine3
+    shippingCity
+    shippingCounty
+    shippingPostcode
+    shippingCountry
+    deliveryDate
+    orderItems {
+      id
+      code
+      total
+      totalTax
+      name
+      qty
+      price
+      mainImage
+    }
+    distributorName
+    outletName
+    promotions {
+      promotionId
+      orderItemId
+      effectType
+      promotionName
+      description
+      originalValue
+      valueChange
+      taxChange
+      newValue
+      taxDescription
+      hiddenFromBrandOwner
+    }
+  }
+}

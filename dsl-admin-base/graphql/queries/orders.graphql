@@ -1,0 +1,86 @@
+query GetOrders(
+  $searchText: String
+  $status: Int
+  $bo: Int
+  $dateTo: String = ""
+  $dateFrom: String = ""
+  $totalFrom: Int
+  $totalTo: Int
+  $perPage: Int = 10
+  $currentPage: Int = 1
+  $sortBy: String!
+  $sortOrder: String!
+) {
+  getAdminOrders(
+    params: {
+      search: $searchText
+      filters: {
+        status: $status
+        brandOwner: $bo
+        date: { to: $dateTo, from: $dateFrom }
+        price: { from: $totalFrom, to: $totalTo }
+      }
+      pagination: { page: $currentPage, perPage: $perPage }
+      sort: { by: $sortBy, direction: $sortOrder }
+    }
+  ) {
+    totalCount
+    adminOrders {
+      reference
+      promotions {
+        promotionId
+        orderItemId
+        effectType
+        promotionName
+        description
+        originalValue
+        valueChange
+        taxChange
+        newValue
+        taxDescription
+        hiddenFromBrandOwner
+      }
+      subtotal
+      discount
+      totalTax
+      total
+      outletName
+      userName
+      distributorOrders {
+        id
+        reference
+        distributorName
+        status {
+          id
+          value
+          displayName
+          description
+        }
+        userId
+        subtotal
+        discount
+        total
+        notes
+        firstname
+        lastname
+        company
+        billingLine1
+        billingLine2
+        billingLine3
+        billingCity
+        billingCounty
+        billingPostcode
+        billingCountry
+        shippingLine1
+        shippingLine2
+        shippingLine3
+        shippingCity
+        shippingCounty
+        shippingPostcode
+        shippingCountry
+        createdOn
+        updatedOn
+      }
+    }
+  }
+}

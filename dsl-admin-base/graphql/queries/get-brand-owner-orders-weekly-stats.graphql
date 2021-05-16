@@ -1,0 +1,6 @@
+query GetBrandOwnerOrdersWeeklyStats {
+  getBrandOwnerOrdersWeeklyStats {
+    dateTime
+    ordersCount
+  }
+}

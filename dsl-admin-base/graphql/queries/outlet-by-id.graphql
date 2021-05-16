@@ -1,0 +1,35 @@
+#import "../fragments/address.graphql"
+#import "../fragments/dsl-user.graphql"
+
+query GetOutletById($id: Int!) {
+  getAdminOutletByID(outletId: $id) {
+    id
+    name
+    style
+    status {
+      value
+      displayName
+      id
+    }
+    legalStatus
+    companyName
+    charityNumber
+    dropPointDescription
+    productsWithPricingCount
+    createdOn
+    lastOrdered
+    addressBook {
+      billingId
+      shippingId
+      addresses {
+        ...AddressFields
+      }
+    }
+    outletUsers {
+      role
+      user {
+        ...DslUserFields
+      }
+    }
+  }
+}

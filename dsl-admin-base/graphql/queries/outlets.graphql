@@ -1,0 +1,39 @@
+#import "../fragments/address.graphql"
+
+query GetOutlets($params: OutletAdminParams) {
+  getAdminOutlets(params: $params) {
+    totalCount
+    outlets {
+      id
+      name
+      status {
+        displayName
+      }
+      style
+      createdOn
+      lastOrdered
+      companyNumber
+      productsWithPricingCount
+      deliveryDays {
+        day
+        isAvailable
+        price
+      }
+      addressBook {
+        billingId
+        shippingId
+        addresses {
+          ...AddressFields
+        }
+      }
+      outletUsers {
+        role
+        user {
+          id
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+}
